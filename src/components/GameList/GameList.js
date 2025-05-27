@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import TicTacToeFactoryABI from '../../contracts/TicTacToeFactory.json';
 import TicTacToeGameABI from '../../contracts/TicTacToeGame.json';
 import './GameList.css';
@@ -44,15 +44,42 @@ const GameList = ({ web3, account, tictactoeFactoryAddress }) => {
     }, [web3, account, tictactoeFactoryAddress]);
 
     const joinGame = async (gameAddress, stake) => {
-        if (!web3 || !account) return;
-        const game = new web3.eth.Contract(TicTacToeGameAbi, gameAddress);
-        try {
-            await game.methods.joinGame().send({ from: account, value: web3.utils.toWei(stake, 'ether') });
-            alert("Joined the game!");
-        } catch (error) {
-            console.error("Error joining game:", error);
-        }
-    };
+    if (typeof window.ethereum === 'undefined' || !window.ethereum.isMetaMask) {
+        console.log('MetaMask is not installed or not connected!');
+        return;
+    }
+
+    if (!web3 || !account) {
+        alert("Web3 instance or account is not available.");
+        return;
+    }
+
+    try {
+        const valueInWei = web3.utils.toWei(stake, 'ether');
+        const valueInHex = web3.utils.toHex(Number(valueInWei));
+
+        const gameContract = new web3.eth.Contract(TicTacToeGameABI.abi, gameAddress);
+
+        const transactionParameters = {
+            from: account,
+            to: gameAddress,
+            value: valueInHex,
+            data: gameContract.methods.joinGame().encodeABI(),
+        };
+
+        const txHash = await window.ethereum.request({
+            method: 'eth_sendTransaction',
+            params: [transactionParameters],
+        });
+
+        console.log("Transaction hash:", txHash);
+        alert("Joined the game!");
+    } catch (error) {
+        console.error("Error joining game:", error);
+        alert("Error joining game: " + error.message);
+    }
+};
+
 
     return (
         <div className="game-list-container">
