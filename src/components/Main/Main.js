@@ -3,7 +3,8 @@ import GameList from '../GameList/GameList.js';
 import CreateGameModal from '../CreateGameModal/CreateGameModal.js';
 import Web3 from 'web3';
 import './Main.css';
-const tictactoeFactoryAddress = "0x10904EDC9122F30889F21FBFd872b99722426fC5"; // Replace with your actual contract address
+
+const tictactoeFactoryAddress = "0xaE036c65C649172b43ef7156b009c6221B596B8b"; // Replace with your actual contract address when deployed
 const sepoliaRPCUrl = "https://sepolia.infura.io/v3/8e51829c693a42819c27393d4e0ff583";
 
 const Main = () => {
@@ -37,7 +38,6 @@ const Main = () => {
         const web3Instance = new Web3(sepoliaRPCUrl);
         console.log(web3Instance);
         setWeb3(web3Instance);
-        connectWallet();
         console.log("Web3 instance set up: ", web3);
 
     }, []);

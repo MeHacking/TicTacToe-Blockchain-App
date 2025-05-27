@@ -34,21 +34,21 @@ const CreateGameModal = ({ onClose, web3, account, tictactoeFactoryAddress }) =>
 
             const tictactoeFactory = new web3.eth.Contract(TicTacToeFactoryABI.abi, tictactoeFactoryAddress);
 
-            const transactionParameters = {
+            const valueInWei = web3.utils.toWei(gameData.stake, 'ether');
+            //Converting stake to hex because MetaMask requires hex format for value, also Number() is used to ensure the value is a number rather than a string
+            const valueInHex = web3.utils.toHex(Number(valueInWei)); 
 
-                to: tictactoeFactoryAddress,
+            const transactionParameters = {
 
                 from: account,
 
-                data: tictactoeFactory.methods.createGame(
+                to: tictactoeFactoryAddress,
 
-                    gameData.stake
+                value: valueInHex,
 
-                ).encodeABI() // call to contract method
+                data: tictactoeFactory.methods.createGame().encodeABI(),
 
             };
-
-            // txHash is a hex string
 
             const txHash = await window.ethereum.request({
 
@@ -57,8 +57,6 @@ const CreateGameModal = ({ onClose, web3, account, tictactoeFactoryAddress }) =>
                 params: [transactionParameters],
 
             });
-
-            console.log("Transaction Hash:", txHash);
 
             onClose();
 
@@ -73,7 +71,7 @@ const CreateGameModal = ({ onClose, web3, account, tictactoeFactoryAddress }) =>
     return (
         <div className="create-game-modal">
             <h2>Set your stake:</h2>
-            <input type="text" className='modal-input' placeholder="Please input a value" onChange={handleChange} />
+            <input type="number" step="0.0001" min="0" className='modal-input' name='stake' placeholder="Please input the amount of ETH" onChange={handleChange} />
             <button className='modal-button' onClick={handleSubmit}>Submit</button>
             <button className="modal-button cancel-button" onClick={onClose}>Cancel</button>
         </div>
