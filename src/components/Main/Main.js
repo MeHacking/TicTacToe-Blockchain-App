@@ -4,7 +4,7 @@ import CreateGameModal from '../CreateGameModal/CreateGameModal.js';
 import Web3 from 'web3';
 import './Main.css';
 
-const tictactoeFactoryAddress = "0xaE036c65C649172b43ef7156b009c6221B596B8b"; // Replace with your actual contract address when deployed
+const tictactoeFactoryAddress = "0x7795D86dbA8519E5266870764e5D45Ca53bDd797"; // Replace with your actual contract address when deployed
 const sepoliaRPCUrl = "https://sepolia.infura.io/v3/8e51829c693a42819c27393d4e0ff583";
 
 const Main = () => {
