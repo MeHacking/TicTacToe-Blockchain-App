@@ -51,6 +51,45 @@
 	},
 	{
 		"inputs": [],
+		"name": "getBoard",
+		"outputs": [
+			{
+				"internalType": "uint8[3][3]",
+				"name": "",
+				"type": "uint8[3][3]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getCurrentPlayer",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getStatus",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "isDraw",
 		"outputs": [
 			{

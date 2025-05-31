@@ -58,6 +58,7 @@ const CreateGameModal = ({ onClose, web3, account, tictactoeFactoryAddress }) =>
 
             });
 
+            console.log("Transaction Hash:", txHash);
             onClose();
 
         } catch (error) {

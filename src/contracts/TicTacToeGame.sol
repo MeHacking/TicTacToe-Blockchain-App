@@ -96,4 +96,24 @@ contract TicTacToeGame {
         }
         return true;
     }
+
+    function getBoard() public view returns (uint8[3][3] memory) {
+        return board;
+    }
+
+    function getCurrentPlayer () external view returns (address) {
+        return currentPlayer;
+    }
+
+    function getStatus() public view returns (string memory) {
+        if (status == GameStatus.WaitingForPlayer) {
+             return "WaitingForPlayers";
+        } else if (status == GameStatus.InProgress) {
+            return "InProgress";
+        } else if (status == GameStatus.Finished) {
+            return "Finished";
+        } else {
+            return "Unknown";
+        }
+    }
 }
