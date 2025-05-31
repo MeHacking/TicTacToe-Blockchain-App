@@ -32,6 +32,11 @@ button {
     color: white;
 }
 
+.create-game-button:hover{
+    background-color: rgb(227, 113, 71);
+    transform: scale(1.05);
+}
+
 .connect-wallet-button {
     background-color: #007bff;
     color: white;

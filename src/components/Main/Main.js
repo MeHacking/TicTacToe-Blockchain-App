@@ -62,7 +62,7 @@ const Main = () => {
 
             <GameList className="game-list" web3={web3} account={account} tictactoeFactoryAddress={tictactoeFactoryAddress} />
 
-            <h2>or create a new one...</h2>
+            <h2>Create A New Game</h2>
             <button className="create-game-button" onClick={() => setShowCreateModal(true)}>NEW GAME</button>
             {showCreateModal && (
                 <CreateGameModal className="modal-overlay"

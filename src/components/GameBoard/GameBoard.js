@@ -122,7 +122,7 @@ const GameBoard = ({ gameAddress }) => {
         <div className="game-container">
             <h2>GAME</h2>
 
-            {/* Status igre */}
+            {/*Game Status*/}
             {gameOver ? (
                 <h3>
                     {winner === "0x0000000000000000000000000000000000000000"
@@ -142,7 +142,7 @@ const GameBoard = ({ gameAddress }) => {
                 </h3>
             )}
 
-            {/* Tabla za igru */}
+            {/*Game Board*/}
             <div className="board">
                 {board.map((row, rowIndex) =>
                     row.map((cell, colIndex) => (
